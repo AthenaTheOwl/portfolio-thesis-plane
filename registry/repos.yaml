@@ -1,0 +1,141 @@
+# registry/repos.yaml
+#
+# The active AthenaTheOwl portfolio. Twenty entries. Each repo carries a
+# slug, a name, a thesis statement, a creation date, and a current
+# verdict. v0 ships every entry with current_verdict: unscored; the
+# 2026-W25 calibration is the first run that writes verdicts back.
+#
+# Slugs are lowercase-with-hyphens and immutable. Thesis statements are
+# the user-authored bet behind each repo. Placeholder rows carrying
+# `TBD - calibration week 2026-W25` exist because the planning agent
+# could not confirm the canonical twenty during PR 1; the next
+# calibration replaces them.
+
+- slug: portfolio-thesis-plane
+  name: Portfolio Thesis Plane
+  thesis_statement: >
+    A weekly typed verdict-card report across the portfolio forces a
+    written ATTEND / FREEZE / RETIRE on every repo, which prevents
+    attention drift toward whatever is emotionally salient.
+  created_at: 2026-06-22
+  current_verdict: unscored
+
+- slug: binding-constraint
+  name: Binding Constraint
+  thesis_statement: >
+    Most weekly planning waste is downstream of one un-named binding
+    constraint. Naming the constraint each week is cheaper than fixing
+    the wrong thing for a quarter.
+  created_at: 2026-04-11
+  current_verdict: unscored
+
+- slug: athena-site
+  name: Athena Site
+  thesis_statement: >
+    A public, low-traffic personal portfolio site as the index page for
+    the rest of the portfolio. Cheap to keep running; high signal for
+    cross-linking briefs.
+  created_at: 2025-09-30
+  current_verdict: unscored
+
+- slug: portfolio-repo-04
+  name: Placeholder Repo 04
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-05
+  name: Placeholder Repo 05
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-06
+  name: Placeholder Repo 06
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-07
+  name: Placeholder Repo 07
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-08
+  name: Placeholder Repo 08
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-09
+  name: Placeholder Repo 09
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-10
+  name: Placeholder Repo 10
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-11
+  name: Placeholder Repo 11
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-12
+  name: Placeholder Repo 12
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-13
+  name: Placeholder Repo 13
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-14
+  name: Placeholder Repo 14
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-15
+  name: Placeholder Repo 15
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-16
+  name: Placeholder Repo 16
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-17
+  name: Placeholder Repo 17
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-18
+  name: Placeholder Repo 18
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-19
+  name: Placeholder Repo 19
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored
+
+- slug: portfolio-repo-20
+  name: Placeholder Repo 20
+  thesis_statement: "TBD - calibration week 2026-W25"
+  created_at: 2026-01-01
+  current_verdict: unscored

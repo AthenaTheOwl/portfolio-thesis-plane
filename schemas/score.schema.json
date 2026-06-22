@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "score.schema.json",
+  "title": "Score",
+  "description": "One repo's thesis-alive score for one ISO week.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["repo_slug", "iso_week", "factor_scores", "total", "verdict"],
+  "properties": {
+    "repo_slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "iso_week": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-W[0-9]{2}$"
+    },
+    "factor_scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model-release-impact",
+        "oss-competition",
+        "paper-drift",
+        "recent-run-evidence",
+        "decision-freshness"
+      ],
+      "properties": {
+        "model-release-impact": {"type": "integer", "minimum": 0, "maximum": 4},
+        "oss-competition": {"type": "integer", "minimum": 0, "maximum": 4},
+        "paper-drift": {"type": "integer", "minimum": 0, "maximum": 4},
+        "recent-run-evidence": {"type": "integer", "minimum": 0, "maximum": 4},
+        "decision-freshness": {"type": "integer", "minimum": 0, "maximum": 4}
+      }
+    },
+    "total": {"type": "integer", "minimum": 0, "maximum": 20},
+    "verdict": {
+      "type": "string",
+      "enum": ["ATTEND", "FREEZE", "RETIRE"]
+    }
+  }
+}

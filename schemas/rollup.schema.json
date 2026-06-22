@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rollup.schema.json",
+  "title": "Rollup",
+  "description": "Weekly roll-up front-matter. Enforces exactly 2 ATTEND and exactly 3 RETIRE.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["iso_week", "attend", "freeze", "retire"],
+  "properties": {
+    "iso_week": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-W[0-9]{2}$"
+    },
+    "attend": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/bucketEntry"}
+    },
+    "freeze": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/bucketEntry"}
+    },
+    "retire": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/bucketEntry"}
+    }
+  },
+  "$defs": {
+    "bucketEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repo_slug", "total_score"],
+      "properties": {
+        "repo_slug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "total_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        }
+      }
+    }
+  }
+}

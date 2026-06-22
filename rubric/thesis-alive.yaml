@@ -1,0 +1,160 @@
+# rubric/thesis-alive.yaml
+#
+# The five-factor thesis-alive rubric. Closure to exactly five factors
+# is fixed by DEC-PTP-001; revising the closure requires a successor
+# decision. Each factor exposes a `rules` array covering every score
+# 0..4 with a free-text `condition`. The renderer prints these
+# conditions in cards; the scorer compares typed signals against the
+# condition keyed by `score`, not the prose.
+
+factors:
+  model-release-impact:
+    description: >
+      Recent foundation-model releases that strengthen or invalidate
+      the repo's bet. Lookback is 30 days from the ISO-week Monday.
+    rules:
+      - score: 0
+        condition: >
+          No relevant model release in the past 30 days. The repo's
+          bet is independent of foundation-model progress this week.
+      - score: 1
+        condition: >
+          Tangentially related release; no direct read on the bet.
+          Adjacent capability or modality moved but does not change
+          the cost or feasibility of the repo's wager.
+      - score: 2
+        condition: >
+          A release in the adjacent space; the bet is still plausible
+          but the surrounding landscape shifted. Worth noting; not
+          worth acting on yet.
+      - score: 3
+        condition: >
+          Release moves the frontier the bet directly depends on.
+          The repo's plan now needs a re-read; one or more assumed
+          inputs got cheaper or more capable.
+      - score: 4
+        condition: >
+          Release directly strengthens or invalidates the bet. Either
+          the repo's hypothesis just got confirmed by a frontier
+          release, or the same release subsumes the repo's scope.
+
+  oss-competition:
+    description: >
+      Open-source competitors that cover the same ground. Lookback is
+      30 days; the comparator is whether a competing repo crossed a
+      visibility or capability threshold.
+    rules:
+      - score: 0
+        condition: >
+          No competing OSS repo crossed a threshold in the past 30
+          days. The competitive frontier did not move.
+      - score: 1
+        condition: >
+          A competitor shipped a minor release or doc improvement;
+          their scope still does not overlap meaningfully with the
+          repo.
+      - score: 2
+        condition: >
+          A competitor shipped a release that partially overlaps with
+          the repo's surface area. The bet is still defensible on the
+          un-overlapped portion.
+      - score: 3
+        condition: >
+          A competitor shipped a release that substantially overlaps
+          with the repo's scope. The bet now needs a sharper
+          differentiator.
+      - score: 4
+        condition: >
+          A competitor shipped a v1 that subsumes the repo's scope.
+          Continued investment is hard to justify on the merits.
+
+  paper-drift:
+    description: >
+      Recent papers that confirm or undercut the approach the repo
+      bets on. Lookback is 30 days; both endorsements and refutations
+      raise this score.
+    rules:
+      - score: 0
+        condition: >
+          No relevant papers in the past 30 days. The literature did
+          not move against or toward the repo's approach.
+      - score: 1
+        condition: >
+          Tangential papers cited the same problem space without
+          engaging with the repo's specific method.
+      - score: 2
+        condition: >
+          A paper engaged with the repo's method as one of many
+          baselines; results were neither confirmatory nor refuting.
+      - score: 3
+        condition: >
+          A paper either supports or undercuts the method with real
+          evidence. Worth a paragraph in the next card; not yet a
+          re-plan.
+      - score: 4
+        condition: >
+          A paper nails the approach with a stronger result, or
+          refutes the approach with a counter-example. The repo's
+          plan needs a re-write.
+
+  recent-run-evidence:
+    description: >
+      Real work that landed in the target repo over the past 30 days.
+      Factory runs, briefs, diagnostics. This is the "is this actually
+      a live project" signal.
+    rules:
+      - score: 0
+        condition: >
+          No factory run, brief, or diagnostic in the past 30 days.
+          The repo is dormant by behavior, regardless of stated
+          intent.
+      - score: 1
+        condition: >
+          A scaffold commit or doc-only change landed; no runtime
+          artifact was produced.
+      - score: 2
+        condition: >
+          One non-trivial change landed in the past 30 days. The
+          repo is alive but slow.
+      - score: 3
+        condition: >
+          Multiple non-trivial changes landed; at least one produced
+          a runtime artifact.
+      - score: 4
+        condition: >
+          The repo shipped a real artifact this week. The bet is
+          backed by behavior, not just intent.
+
+  decision-freshness:
+    description: >
+      DEC (architectural decision) freshness in the target repo.
+      Stale decisions are a leading indicator of stale thinking;
+      fresh decisions raise this score.
+    rules:
+      - score: 0
+        condition: >
+          The latest DEC is older than 90 days, or there are no DECs.
+          Architectural thinking has not been updated in a quarter.
+      - score: 1
+        condition: >
+          The latest DEC is 60..90 days old. Thinking is dated; a
+          renewal is overdue.
+      - score: 2
+        condition: >
+          The latest DEC is 30..60 days old. Thinking is current
+          enough for now.
+      - score: 3
+        condition: >
+          The latest DEC is 7..30 days old. The repo has had a
+          recent thinking update.
+      - score: 4
+        condition: >
+          A DEC landed this week. The repo's architecture had a
+          live revision in the past seven days.
+
+# Verdict mapping is fixed by DEC-PTP-001:
+#   total >= 15 -> ATTEND candidate
+#   8..14      -> FREEZE candidate
+#   <= 7       -> RETIRE candidate
+# The roll-up overrides candidates to force exactly 2 ATTEND and
+# exactly 3 RETIRE.

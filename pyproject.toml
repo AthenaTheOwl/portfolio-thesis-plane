@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "portfolio-thesis-plane"
+version = "0.1.0"
+description = "Weekly thesis-alive scorecard for the AthenaTheOwl portfolio."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+  {name = "Vignesh"},
+]
+dependencies = [
+  "pyyaml>=6.0",
+  "jsonschema>=4.18",
+]
+
+[project.scripts]
+portfolio-thesis-plane = "portfolio_thesis_plane.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["portfolio_thesis_plane"]
+
+# uv-specific configuration. `package = true` makes uv editable-install
+# the project itself into the venv so `python -m uv run pytest` can
+# import `portfolio_thesis_plane` without falling back to the system
+# python (otherwise the import resolves outside the venv).
+[tool.uv]
+package = true
+
+# Dev dependencies live under [dependency-groups], not
+# [project.optional-dependencies]. `uv sync` installs dependency-groups
+# automatically; optional-dependencies require an explicit --extra flag
+# and won't reach the venv otherwise.
+[dependency-groups]
+dev = [
+  "pytest>=7.0",
+]
