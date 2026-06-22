@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "card.schema.json",
+  "title": "Card",
+  "description": "YAML front-matter for one per-repo weekly card. The full factor sub-score table and evidence trail live in the markdown body, not in the front-matter — the front-matter is the lightweight index for tooling. `forced_verdict` is optional and only differs from `verdict` when the rollup mechanic overrode the candidate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["repo_slug", "iso_week", "total", "verdict"],
+  "properties": {
+    "repo_slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "iso_week": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-W[0-9]{2}$"
+    },
+    "total": {"type": "integer", "minimum": 0, "maximum": 20},
+    "verdict": {
+      "type": "string",
+      "enum": ["ATTEND", "FREEZE", "RETIRE"]
+    },
+    "forced_verdict": {
+      "type": "string",
+      "enum": ["ATTEND", "FREEZE", "RETIRE"]
+    }
+  }
+}

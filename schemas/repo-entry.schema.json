@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "repo-entry.schema.json",
+  "title": "RepoEntry",
+  "description": "One row in registry/repos.yaml. Names a portfolio repo and its thesis.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["slug", "name", "thesis_statement", "created_at", "current_verdict"],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "thesis_statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "current_verdict": {
+      "type": "string",
+      "enum": ["ATTEND", "FREEZE", "RETIRE", "unscored"]
+    }
+  }
+}

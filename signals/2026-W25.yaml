@@ -1,0 +1,96 @@
+# signals/2026-W25.yaml
+#
+# Hand-curated signals for the calibration week. v0 spec 0001 says
+# the first week is computed by hand to anchor the rubric before any
+# live-ingest automation lands (spec 0003).
+#
+# Per-repo shape:
+#   <slug>:
+#     scores:           # 0..4 per factor, all five required
+#       model-release-impact: int
+#       oss-competition: int
+#       paper-drift: int
+#       recent-run-evidence: int
+#       decision-freshness: int
+#     evidence:         # one or more short strings per factor
+#       <factor>: [ "...", "..." ]
+#
+# Repos absent from this file score 0 on every factor for the week.
+
+portfolio-thesis-plane:
+  scores:
+    model-release-impact: 1
+    oss-competition: 1
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 4
+  evidence:
+    model-release-impact:
+      - "No frontier release in 2026-W23..W25 affects a portfolio-review tool."
+    oss-competition:
+      - "One adjacent OSS tool (`team-okr-rolltop`) ships weekly digests; scope is broader and adjacent."
+    paper-drift:
+      - "No relevant paper in the past 30 days."
+    recent-run-evidence:
+      - "v0 scaffold landed on 2026-06-22; PR 1 (this batch) lands the rubric and registry."
+    decision-freshness:
+      - "DEC-PTP-001 accepted 2026-06-22 — this week."
+
+binding-constraint:
+  scores:
+    model-release-impact: 2
+    oss-competition: 1
+    paper-drift: 2
+    recent-run-evidence: 3
+    decision-freshness: 3
+  evidence:
+    model-release-impact:
+      - "Adjacent model release in 2026-W22 raised retrieval quality; the constraint-naming flow is read-heavy."
+    oss-competition:
+      - "Two adjacent planning tools released minor versions; neither overlaps the binding-constraint mechanic."
+    paper-drift:
+      - "Recent paper on weekly-cadence planning systems engaged the topic at one remove."
+    recent-run-evidence:
+      - "Two non-trivial briefs landed in the past 30 days; one diagnostic ran 2026-W24."
+    decision-freshness:
+      - "DEC-BC-007 landed 2026-W23 (~14 days old)."
+
+athena-site:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 1
+    decision-freshness: 1
+  evidence:
+    model-release-impact:
+      - "Personal portfolio site; model frontier irrelevant to the bet."
+    oss-competition:
+      - "Bet is on the writer, not the static-site tooling."
+    paper-drift:
+      - "Out of scope."
+    recent-run-evidence:
+      - "Two doc-only commits in the past 30 days; no new posts."
+    decision-freshness:
+      - "Latest DEC is ~80 days old; thinking is dated."
+
+# Placeholder repos: every factor scores 0 because no signals have been
+# curated for them yet. They will be replaced with real entries as the
+# canonical portfolio list is confirmed.
+portfolio-repo-04: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-05: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-06: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-07: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-08: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-09: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-10: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-11: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-12: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-13: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-14: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-15: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-16: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-17: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-18: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-19: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+portfolio-repo-20: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
