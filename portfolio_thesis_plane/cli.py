@@ -1,6 +1,8 @@
 """Command-line entry for portfolio-thesis-plane.
 
 Subcommands:
+- `validate`: run the canonical no-arg sanity check over the committed
+  registry, rubric, and schemas. Read-only; exits 0 on success.
 - `score`: print one repo's `Score` dict for an ISO week as JSON.
 - `generate`: render cards + rollup for an ISO week into `reports/<week>/`.
 - `list-repos`: print the registry slugs.
@@ -9,6 +11,7 @@ Subcommands:
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import sys
 from pathlib import Path
@@ -17,6 +20,48 @@ from typing import Sequence
 from . import ledger, loader
 from .report import render_card, render_rollup
 from .score import FACTOR_NAMES, build_rollup, score_repo
+
+SCRIPTS_DIR = loader.REPO_ROOT / "scripts"
+
+
+def _load_script_main(script_name: str):
+    """Load a `scripts/<name>.py` module and return its `main` callable.
+
+    The `scripts/` directory is not an importable package, so load each
+    validator by path. Keeps the canonical checks in one place rather
+    than duplicating their logic here.
+    """
+    path = SCRIPTS_DIR / f"{script_name}.py"
+    spec = importlib.util.spec_from_file_location(f"_ptp_{script_name}", path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"cannot load {path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.main
+
+
+def _cmd_validate(_: argparse.Namespace) -> int:
+    """Run the canonical no-arg sanity check over committed artifacts.
+
+    Validates the schemas, the repo registry, and the rubric — the three
+    typed inputs the rest of the tool reads. Read-only; writes nothing.
+    Exits 0 only if every check passes.
+    """
+    checks = ("validate_schemas", "validate_registry", "validate_rubric")
+    rc = 0
+    for name in checks:
+        try:
+            check_main = _load_script_main(name)
+        except Exception as exc:  # pragma: no cover - import guard
+            print(f"validate: could not load {name}: {exc}", file=sys.stderr)
+            rc = 1
+            continue
+        result = check_main()
+        if result != 0:
+            rc = 1
+    if rc == 0:
+        print("validate: registry, rubric, and schemas ok")
+    return rc
 
 
 def _cmd_list_repos(_: argparse.Namespace) -> int:
@@ -93,6 +138,12 @@ def build_parser() -> argparse.ArgumentParser:
         description="Weekly thesis-alive scorer for the AthenaTheOwl portfolio.",
     )
     sub = parser.add_subparsers(dest="cmd", required=True)
+
+    p_validate = sub.add_parser(
+        "validate",
+        help="Validate the committed registry, rubric, and schemas (no args).",
+    )
+    p_validate.set_defaults(func=_cmd_validate)
 
     p_list = sub.add_parser("list-repos", help="Print registry slugs.")
     p_list.set_defaults(func=_cmd_list_repos)
