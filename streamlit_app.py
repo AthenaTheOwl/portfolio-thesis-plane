@@ -122,8 +122,96 @@ with st.expander("thesis statements for the ATTEND repos"):
         slug = item["repo_slug"]
         st.markdown(f"**{name_by_slug[slug]}** — {thesis_by_slug.get(slug) or '(no thesis on file)'}")
 
+# ---------------------------------------------------------------------------
+# Run the real scoring engine live. This is not a viewer — the sliders below
+# call portfolio_thesis_plane.score.score_repo (the same function that scored
+# the committed week) and then re-run build_rollup with your repo injected, so
+# you can watch the forced top-2 ATTEND / bottom-3 RETIRE mechanic re-decide.
+# ---------------------------------------------------------------------------
+st.divider()
+st.subheader("score a repo yourself")
+st.caption(
+    "drive the actual rubric engine — `portfolio_thesis_plane.score.score_repo` "
+    "+ `build_rollup` — with your own per-factor signals. set the five factors, "
+    "watch the total, verdict, and the forced ATTEND/RETIRE rollup recompute live."
+)
+
+FACTOR_HELP = {
+    "model-release-impact": "recent foundation-model releases that strengthen or invalidate the bet",
+    "oss-competition": "open-source competitors crossing a visibility or capability threshold",
+    "paper-drift": "recent papers that confirm or undercut the approach",
+    "recent-run-evidence": "real work (runs, briefs, artifacts) that landed in the repo in 30 days",
+    "decision-freshness": "how recently an architectural decision (DEC) was revised",
+}
+
+your_name = st.text_input("your repo name", value="my-new-bet")
+
+cols = st.columns(len(FACTOR_NAMES))
+your_factors: dict[str, int] = {}
+for col, factor in zip(cols, FACTOR_NAMES):
+    with col:
+        your_factors[factor] = st.slider(
+            factor, 0, 4, 2, help=FACTOR_HELP.get(factor)
+        )
+
+try:
+    from portfolio_thesis_plane.score import verdict_for_total
+
+    your_result = score_repo("__yours__", week, your_factors)
+    your_total = your_result["total"]
+    your_verdict_candidate = verdict_for_total(your_total)
+
+    m1, m2, m3 = st.columns(3)
+    m1.metric("your total", f"{your_total}/20")
+    m2.metric("candidate band", your_verdict_candidate, help="before the forced rollup")
+    m3.metric("vs. top repo", f"{your_total - top['total']:+d}", help=f"top is {name_by_slug[top['repo_slug']]} at {top['total']}/20")
+
+    # Re-run the real rollup with the user's repo injected into the portfolio.
+    injected_totals = [(slug, t) for slug, t in totals] + [("__yours__", your_total)]
+    new_rollup = build_rollup(week, injected_totals)
+    new_verdict_by_slug: dict[str, str] = {}
+    for bucket, verdict in (("attend", "ATTEND"), ("freeze", "FREEZE"), ("retire", "RETIRE")):
+        for item in new_rollup[bucket]:
+            new_verdict_by_slug[item["repo_slug"]] = verdict
+    your_forced_verdict = new_verdict_by_slug["__yours__"]
+
+    if your_forced_verdict == "ATTEND":
+        st.success(
+            f"with these signals your repo lands **ATTEND** ({your_total}/20) — it forces "
+            f"its way into the top-2 attention band this week."
+        )
+    elif your_forced_verdict == "RETIRE":
+        st.error(
+            f"with these signals your repo lands **RETIRE** ({your_total}/20) — it falls into "
+            f"the forced bottom-3. raise run-evidence or decision-freshness to climb out."
+        )
+    else:
+        st.warning(
+            f"with these signals your repo lands **FREEZE** ({your_total}/20) — alive but not "
+            f"forced into the attention band. push two factors up to contend for ATTEND."
+        )
+
+    # Show whom the user displaced from ATTEND, if anyone.
+    old_attend = {i["repo_slug"] for i in rollup["attend"]}
+    new_attend = {i["repo_slug"] for i in new_rollup["attend"] if i["repo_slug"] != "__yours__"}
+    displaced = old_attend - new_attend
+    if your_forced_verdict == "ATTEND" and displaced:
+        st.caption(
+            "injecting your repo pushed "
+            + ", ".join(name_by_slug.get(s, s) for s in sorted(displaced))
+            + " out of the ATTEND band."
+        )
+
+    st.caption(
+        "the score, the verdict, and the rollup above are all computed by the real "
+        "`score_repo` / `build_rollup` functions — not a lookup. move a slider and the "
+        "forced top-2 / bottom-3 mechanic re-decides."
+    )
+except Exception as exc:  # pragma: no cover - defensive for cloud import differences
+    st.info(f"interactive scoring needs the package importable ({exc}). the scorecard above still renders.")
+
 st.caption(
     "scoring lives in `portfolio_thesis_plane/`; this page reads the committed "
-    "`registry/repos.yaml` + latest `signals/*.yaml`. "
-    "repo: github.com/AthenaTheOwl/portfolio-thesis-plane"
+    "`registry/repos.yaml` + latest `signals/*.yaml`, and the section above drives "
+    "the real scorer. repo: github.com/AthenaTheOwl/portfolio-thesis-plane"
 )
