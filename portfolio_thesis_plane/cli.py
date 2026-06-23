@@ -132,6 +132,78 @@ def _cmd_generate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _verdict_by_slug(rollup: dict) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for bucket, verdict in (("attend", "ATTEND"), ("freeze", "FREEZE"), ("retire", "RETIRE")):
+        for item in rollup[bucket]:
+            out[item["repo_slug"]] = verdict
+    return out
+
+
+def _cmd_show(args: argparse.Namespace) -> int:
+    """Print a ranked, readable scorecard from the committed signals.
+
+    No-arg by default: reads the latest committed signals week, scores
+    every registry repo, applies the forced top-2 / bottom-3 mechanic,
+    and prints a ranked table plus a one-line headline. Read-only,
+    offline, exits 0.
+    """
+    try:
+        week = args.week or loader.latest_week()
+        registry = loader.load_registry()
+        signals = loader.load_signals(week)
+    except FileNotFoundError as exc:
+        print(f"show: {exc}", file=sys.stderr)
+        return 1
+
+    name_by_slug = {entry["slug"]: entry.get("name", entry["slug"]) for entry in registry}
+
+    scored: list[dict] = []
+    repo_totals: list[tuple[str, int]] = []
+    for entry in registry:
+        slug = entry["slug"]
+        sub_scores, _ = _extract_scores_and_evidence(signals.get(slug))
+        result = score_repo(slug, week, sub_scores)
+        scored.append(result)
+        repo_totals.append((slug, result["total"]))
+
+    rollup = build_rollup(week, repo_totals)
+    verdicts = _verdict_by_slug(rollup)
+
+    ranked = sorted(scored, key=lambda s: (-s["total"], s["repo_slug"]))
+
+    name_w = max([len("repo")] + [len(name_by_slug[s["repo_slug"]]) for s in ranked])
+
+    print(f"portfolio thesis plane - {week}")
+    print(f"{len(ranked)} repos scored against a 5-factor thesis-alive rubric (0..20).")
+    print()
+    header = f"  {'#':>2}  {'repo'.ljust(name_w)}  {'score':>5}  verdict"
+    print(header)
+    print("  " + "-" * (len(header) - 2))
+    for rank, s in enumerate(ranked, start=1):
+        slug = s["repo_slug"]
+        name = name_by_slug[slug]
+        print(
+            f"  {rank:>2}  {name.ljust(name_w)}  "
+            f"{s['total']:>3}/20  {verdicts[slug]}"
+        )
+    print()
+
+    top = ranked[0]
+    bottom = ranked[-1]
+    attend = [name_by_slug[i["repo_slug"]] for i in rollup["attend"]]
+    retire = [name_by_slug[i["repo_slug"]] for i in rollup["retire"]]
+    n_zero = sum(1 for s in scored if s["total"] == 0)
+
+    print(
+        f"headline: {top['repo_slug']} leads at {top['total']}/20; "
+        f"ATTEND forced onto {', '.join(attend)}. "
+        f"{n_zero} of {len(scored)} repos score 0 (dormant), so the "
+        f"bottom-3 RETIRE bucket is {', '.join(retire)}."
+    )
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="portfolio-thesis-plane",
@@ -144,6 +216,17 @@ def build_parser() -> argparse.ArgumentParser:
         help="Validate the committed registry, rubric, and schemas (no args).",
     )
     p_validate.set_defaults(func=_cmd_validate)
+
+    p_show = sub.add_parser(
+        "show",
+        help="Print a ranked scorecard from the latest committed week (no args).",
+    )
+    p_show.add_argument(
+        "--week",
+        default=None,
+        help="ISO week to show (default: latest committed signals week).",
+    )
+    p_show.set_defaults(func=_cmd_show)
 
     p_list = sub.add_parser("list-repos", help="Print registry slugs.")
     p_list.set_defaults(func=_cmd_list_repos)

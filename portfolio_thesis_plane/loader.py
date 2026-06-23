@@ -34,6 +34,20 @@ def load_rubric(path: Path | None = None) -> dict[str, Any]:
     return doc
 
 
+def latest_week(signals_dir: Path | None = None) -> str:
+    """Return the most recent ISO week with a committed signals file.
+
+    The signals directory holds one `<iso-week>.yaml` per scored week.
+    ISO-week strings (e.g. `2026-W25`) sort lexicographically in
+    chronological order, so the max filename stem is the latest week.
+    """
+    signals_dir = signals_dir or SIGNALS_DIR
+    weeks = sorted(p.stem for p in signals_dir.glob("*.yaml"))
+    if not weeks:
+        raise FileNotFoundError(f"no committed signals files under {signals_dir}")
+    return weeks[-1]
+
+
 def load_signals(iso_week: str, signals_dir: Path | None = None) -> dict[str, Any]:
     """Load all signal YAMLs for one ISO week.
 

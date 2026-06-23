@@ -37,21 +37,53 @@ into a focused tool.
 
 ## Status
 
-
-v0.1 shipped — runnable, minimal. The first real deliverable is in place; the next passes deepen it (more scenarios, real-data backfill). The entry command `python -m portfolio_thesis_plane generate --week 2026-W25` runs. See `specs/0002-design/` for the v0.1 scope and `STATUS.md` (where present) for the current state and next-feature queue.
+v0.1 shipped — runnable, minimal. The CLI scores the twenty registry
+repos against the five-factor rubric using hand-curated signals, applies
+the forced top-2 / bottom-3 mechanic, and writes weekly cards plus a
+roll-up. One calibration week (`2026-W25`) is committed. The next passes
+deepen it: replace the seventeen placeholder rows with real repos, and
+compute a second week so the week-over-week factors exercise a diff. See
+`STATUS.md` for the next-feature queue.
 
 ## How to run
 
-Placeholder; will land in spec 0002. v0 ships the rubric, the repo
-registry (the twenty repos), and one calibration week computed by
-hand. No runtime yet.
+```
+# ranked, readable scorecard from the latest committed week (no args)
+python -m portfolio_thesis_plane show
 
-The eventual CLI shape (target for spec 0003):
+# regenerate the cards + roll-up for a week
+python -m portfolio_thesis_plane generate --week 2026-W25
+
+# one repo's score as JSON
+python -m portfolio_thesis_plane score --repo binding-constraint --week 2026-W25
+
+# validate the committed registry, rubric, and schemas
+python -m portfolio_thesis_plane validate
+```
+
+`show` is read-only and offline: it reads `registry/repos.yaml` and the
+latest `signals/*.yaml`, scores every repo, and prints a ranked table
+plus a one-line headline.
+
+## live demo
+
+A Streamlit page (`streamlit_app.py`) renders the same scorecard
+interactively: a ranked table with per-factor sub-scores, a verdict
+filter, and the forced-ATTEND headline. It reads the committed registry
+and latest signals directly — no network, no secrets.
+
+Run it locally:
 
 ```
-python -m portfolio_thesis_plane generate --week 2026-W34 --out reports/2026-W34.md
-python -m portfolio_thesis_plane score --repo binding-constraint --week 2026-W34
+python -m uv run --with streamlit streamlit run streamlit_app.py
+# or: pip install -r requirements.txt && streamlit run streamlit_app.py
 ```
+
+Deploy on Streamlit Community Cloud -> New app -> repo
+`AthenaTheOwl/portfolio-thesis-plane`, branch `main`, main file
+`streamlit_app.py`.
+
+<!-- live url: (add after first Streamlit Community Cloud deploy) -->
 
 ## Layout
 

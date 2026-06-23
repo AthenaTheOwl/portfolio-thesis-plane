@@ -1,3 +1,6 @@
+# Streamlit Community Cloud reads this file. streamlit_app.py imports the local
+# portfolio_thesis_plane package (for the scorer + loaders), which needs pyyaml;
+# `.` installs the package itself. The CLI/package deps also live in pyproject.toml.
+streamlit>=1.40
 pyyaml>=6.0
-jsonschema>=4.18
-pytest>=7.0
+.
