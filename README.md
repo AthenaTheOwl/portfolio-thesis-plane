@@ -1,6 +1,6 @@
 # portfolio-thesis-plane
 
-Twenty repos go into a weekly report card. This week three of them score above zero. The other seventeen are placeholder rows scoring a flat 0/20, and the tool stamps RETIRE on the bottom three without asking how anyone feels about it.
+Twenty repos go into a weekly report card. This week three of them score above zero. The other seventeen are real repos with no curated signals yet, scoring a flat 0/20, and the tool stamps RETIRE on the bottom three without asking how anyone feels about it.
 
 ## What it does
 
@@ -20,33 +20,33 @@ python -m portfolio_thesis_plane show
 portfolio thesis plane - 2026-W25
 20 repos scored against a 5-factor thesis-alive rubric (0..20).
 
-   #  repo                    score  verdict
-  ------------------------------------------
-   1  Binding Constraint       11/20  ATTEND
-   2  Portfolio Thesis Plane   10/20  ATTEND
-   3  Athena Site               2/20  FREEZE
-   4  Placeholder Repo 04       0/20  FREEZE
-   5  Placeholder Repo 05       0/20  FREEZE
-   6  Placeholder Repo 06       0/20  FREEZE
-   7  Placeholder Repo 07       0/20  FREEZE
-   8  Placeholder Repo 08       0/20  FREEZE
-   9  Placeholder Repo 09       0/20  FREEZE
-  10  Placeholder Repo 10       0/20  FREEZE
-  11  Placeholder Repo 11       0/20  FREEZE
-  12  Placeholder Repo 12       0/20  FREEZE
-  13  Placeholder Repo 13       0/20  FREEZE
-  14  Placeholder Repo 14       0/20  FREEZE
-  15  Placeholder Repo 15       0/20  FREEZE
-  16  Placeholder Repo 16       0/20  FREEZE
-  17  Placeholder Repo 17       0/20  FREEZE
-  18  Placeholder Repo 18       0/20  RETIRE
-  19  Placeholder Repo 19       0/20  RETIRE
-  20  Placeholder Repo 20       0/20  RETIRE
+   #  repo                     score  verdict
+  -------------------------------------------
+   1  Binding Constraint        11/20  ATTEND
+   2  Portfolio Thesis Plane    10/20  ATTEND
+   3  Athena Site                2/20  FREEZE
+   4  Agent Notary Layer         0/20  FREEZE
+   5  Brief Calibration          0/20  FREEZE
+   6  Dream Replay CLI           0/20  FREEZE
+   7  Eval Forge                 0/20  FREEZE
+   8  HBM Supply Tracker         0/20  FREEZE
+   9  Interconnect Queue Risk    0/20  FREEZE
+  10  MCP Security Lab           0/20  FREEZE
+  11  Modelswap Replay           0/20  FREEZE
+  12  Oulipo Memory Deck         0/20  FREEZE
+  13  Pattern Index              0/20  FREEZE
+  14  Pre-Mortem Ledger          0/20  FREEZE
+  15  Release Pillar Mapper      0/20  FREEZE
+  16  Review Queue               0/20  FREEZE
+  17  Source Decay Ledger        0/20  FREEZE
+  18  Sports Prediction OS       0/20  RETIRE
+  19  Supplier Risk RAG Agent    0/20  RETIRE
+  20  Trace-to-Eval Harness      0/20  RETIRE
 
-headline: binding-constraint leads at 11/20; ATTEND forced onto Binding Constraint, Portfolio Thesis Plane. 17 of 20 repos score 0 (dormant), so the bottom-3 RETIRE bucket is Placeholder Repo 20, Placeholder Repo 19, Placeholder Repo 18.
+headline: binding-constraint leads at 11/20; ATTEND forced onto Binding Constraint, Portfolio Thesis Plane. 17 of 20 repos score 0 (dormant), so the bottom-3 RETIRE bucket is Trace-to-Eval Harness, Supplier Risk RAG Agent, Sports Prediction OS.
 ```
 
-The seventeen zeros are honest. This is the calibration week (`2026-W25`); the placeholder rows are real rows that have not been filled in yet, and the rubric scores them exactly as dormant as they are.
+The seventeen zeros are honest. This is the calibration week (`2026-W25`); the rows are real repos from the portfolio with theses already written, but no signals have been curated for them yet, and the rubric scores them exactly as dormant as they are.
 
 ## live demo
 

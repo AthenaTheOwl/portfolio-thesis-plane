@@ -14,8 +14,10 @@ repo; keep it small and concrete.
   `data/ledger/2026-W25.jsonl` (20 rows, one per repo).
 - Twenty cards plus a roll-up exist on disk for 2026-W25. The
   roll-up names two ATTEND picks (`binding-constraint`,
-  `portfolio-thesis-plane`) and three RETIRE picks
-  (`portfolio-repo-{18,19,20}`).
+  `portfolio-thesis-plane`) and three RETIRE picks (whichever three
+  zero-scored repos sort last by slug this week — currently
+  `trace-to-eval-harness`, `supplier-risk-rag-agent`,
+  `sports-prediction-os`).
 - The CLI is runnable: `python -m portfolio_thesis_plane generate
   --week 2026-W25` reproduces the cards and the rollup from the
   hand-curated signals in `signals/2026-W25.yaml`.
@@ -34,19 +36,19 @@ repo; keep it small and concrete.
 
 ## Known limits
 
-- Seventeen of the twenty registry entries are placeholder rows
-  carrying `thesis_statement: "TBD - calibration week 2026-W25"`.
-  The canonical AthenaTheOwl portfolio list has not been confirmed
-  for v0.1. Every weekly rollup is dominated by these placeholders
-  until they are replaced.
+- The seventeen non-founding registry entries (added in the 2026-W25
+  consolidation) carry real theses but no curated signals yet, so
+  they score 0/20 this week by the file's own honest-zero
+  convention. Every weekly rollup is dominated by these zeros until
+  `signals/2026-W25.yaml` gets real per-repo entries for them.
 - Signal ingest is hand-curated. There is no automation that turns
   model-release feeds, OSS competitor watchlists, or paper RSS into
   the YAML the scorer reads. Spec 0003 owns this.
-- The 2026-W25 cards on disk were hand-authored against the rubric;
-  the CLI can also render them from `signals/2026-W25.yaml`, but
-  the on-disk cards include forced_verdict front-matter notes that
-  the CLI's renderer does not yet emit. The two are equivalent on
-  scoring but not byte-identical.
+- The 2026-W25 cards on disk are now CLI-rendered (`generate --week
+  2026-W25`), regenerated during the consolidation pass so all
+  twenty match the current registry. The renderer does not emit a
+  `forced_verdict` front-matter field; the rollup file is still the
+  place that records which verdicts got overridden.
 - No `voice_lint.py` gate yet (deferred to spec 0002). The banned-
   word check named in AGENTS.md is not enforced.
 - No `validate_decisions.py` gate yet. The DEC directory is
@@ -64,12 +66,13 @@ repo; keep it small and concrete.
   `specs/0001-foundation/acceptance.md`.
 - Add `scripts/validate_decisions.py` to enforce the DEC front-matter
   shape (id, title, date, status, supersedes).
-- Replace the seventeen placeholder rows in `registry/repos.yaml`
-  with the canonical AthenaTheOwl portfolio list once it is
-  confirmed. Update `signals/2026-W25.yaml` and re-render the
-  2026-W25 calibration to match.
+- Curate real `signals/2026-W25.yaml` entries for the seventeen
+  repos added in the consolidation pass (currently absent from the
+  file, so they score an honest 0) and re-render the 2026-W25
+  calibration to match.
 - Extend the CLI to write a `forced_verdict` field into rendered
-  cards so the on-disk and CLI-rendered cards are byte-identical.
+  cards so per-repo override reasoning is visible on the card itself,
+  not just in `_rollup.md`.
 - Run spec 0002 (`signals/sources.yaml` + an offline ingest stub)
   end-to-end against the 2026-W26 week as the first non-calibration
   cycle.

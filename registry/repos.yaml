@@ -6,10 +6,11 @@
 # 2026-W25 calibration is the first run that writes verdicts back.
 #
 # Slugs are lowercase-with-hyphens and immutable. Thesis statements are
-# the user-authored bet behind each repo. Placeholder rows carrying
-# `TBD - calibration week 2026-W25` exist because the planning agent
-# could not confirm the canonical twenty during PR 1; the next
-# calibration replaces them.
+# the user-authored bet behind each repo. The 2026-W25 calibration
+# replaced the seventeen placeholder rows with the real portfolio from
+# E:/claude_code/random-apps. Signals for the newly added repos are not
+# yet curated, so they score 0 on every factor this week (honest zero,
+# not a fabricated score) until a human writes the signals entries.
 
 - slug: portfolio-thesis-plane
   name: Portfolio Thesis Plane
@@ -38,104 +39,159 @@
   created_at: 2025-09-30
   current_verdict: unscored
 
-- slug: portfolio-repo-04
-  name: Placeholder Repo 04
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: supplier-risk-rag-agent
+  name: Supplier Risk RAG Agent
+  thesis_statement: >
+    A RAG agent over supplier-risk filings is only worth trusting if every
+    answer points at a verbatim retrieved span; citation faithfulness
+    checked after generation, not asserted, is what makes the refusal
+    behavior credible.
+  created_at: 2026-06-23
   current_verdict: unscored
 
-- slug: portfolio-repo-05
-  name: Placeholder Repo 05
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: mcp-security-lab
+  name: MCP Security Lab
+  thesis_statement: >
+    An MCP server is a process your agent trusts by default. Scoring each
+    server's tool text and permissions against a typed policy before it
+    joins the allowlist catches the shell-spawning server the deadline
+    would otherwise wave through.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-06
-  name: Placeholder Repo 06
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: trace-to-eval-harness
+  name: Trace-to-Eval Harness
+  thesis_statement: >
+    A bad-run trace is evidence with a short shelf life. Freezing it into
+    a checked-in, deterministic eval case the moment it's found is cheaper
+    than re-discovering the same regression later.
+  created_at: 2026-06-22
   current_verdict: unscored
 
-- slug: portfolio-repo-07
-  name: Placeholder Repo 07
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: eval-forge
+  name: Eval Forge
+  thesis_statement: >
+    Retrieval and agent quality regressions should block the PR that
+    caused them, not surface a week later on a dashboard nobody reopens.
+    Five typed checks with one threshold each, one exit code.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-08
-  name: Placeholder Repo 08
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: review-queue
+  name: Review Queue
+  thesis_statement: >
+    Agent-produced candidates — drafts, memory edits, skills — should not
+    auto-promote. A typed queue with provenance, a diff, and an empty
+    verdict slot until a named human signs off is cheaper than the bad
+    ship it prevents.
+  created_at: 2026-06-25
   current_verdict: unscored
 
-- slug: portfolio-repo-09
-  name: Placeholder Repo 09
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: agent-notary-layer
+  name: Agent Notary Layer
+  thesis_statement: >
+    Agent-to-agent business actions need a receipt that survives a later
+    dispute without carrying the payload. A hash-chained, signature-broken-
+    on-edit receipt is the minimum viable notarization.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-10
-  name: Placeholder Repo 10
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: pattern-index
+  name: Pattern Index
+  thesis_statement: >
+    A pattern that transfers across repos is only real once it's mined
+    from the decisions/ ledgers and graded 90 days out. Without that wait,
+    "this pattern works" is a hunch wearing a write-up.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-11
-  name: Placeholder Repo 11
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: dream-replay-cli
+  name: Dream Replay CLI
+  thesis_statement: >
+    An agent that learns by overwriting itself mid-flight has no audit
+    trail and no veto. A deliberate offline replay pass that proposes
+    changes for a human to accept is the veto most agent frameworks skip.
+  created_at: 2026-06-25
   current_verdict: unscored
 
-- slug: portfolio-repo-12
-  name: Placeholder Repo 12
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: hbm-supply-tracker
+  name: HBM Supply Tracker
+  thesis_statement: >
+    Announced HBM capacity is not committed capacity. Ranking it against
+    wafer, packaging, tooling, and customer-binding signals is cheaper
+    than trusting the headline number.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-13
-  name: Placeholder Repo 13
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: interconnect-queue-risk
+  name: Interconnect Queue Risk
+  thesis_statement: >
+    Most grid interconnection-queue projects never reach commercial
+    operation. Ranking them by study-phase progress, network-upgrade
+    cost per MW, and withdrawal pressure prices that risk before the
+    market does.
+  created_at: 2026-07-01
   current_verdict: unscored
 
-- slug: portfolio-repo-14
-  name: Placeholder Repo 14
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: sports-prediction-os
+  name: Sports Prediction OS
+  thesis_statement: >
+    The scoreline is the least information-dense fact about a soccer
+    match. A surface built on expected-goals and shot-quality gaps reads
+    the signal the box score flattens away.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-15
-  name: Placeholder Repo 15
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: oulipo-memory-deck
+  name: Oulipo Memory Deck
+  thesis_statement: >
+    A constrained generative game (Oulipo S+7 swaps on a fixed object
+    deck) is worth keeping as a standalone artifact separate from any
+    product repo — it's a creative-practice bet, not a delivery one.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-16
-  name: Placeholder Repo 16
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: pre-mortem-ledger
+  name: Pre-Mortem Ledger
+  thesis_statement: >
+    A forced monthly pre-mortem on the largest position — named failure
+    modes with observability triggers, re-scored against what actually
+    happened — catches a thesis going wrong before the post-mortem does.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-17
-  name: Placeholder Repo 17
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: source-decay-ledger
+  name: Source Decay Ledger
+  thesis_statement: >
+    A reading list that only ever grows rots quietly. Counting per-source
+    output against a kill list keeps the weekly brief's inputs honest
+    about their own worth.
+  created_at: 2026-06-25
   current_verdict: unscored
 
-- slug: portfolio-repo-18
-  name: Placeholder Repo 18
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: brief-calibration
+  name: Brief Calibration
+  thesis_statement: >
+    Predictions made in a weekly brief are unfalsifiable by default.
+    Forcing an explicit, horizon-tagged predictions.yaml block and
+    Brier-scoring it is what turns adjectives into a track record.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-19
-  name: Placeholder Repo 19
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: modelswap-replay
+  name: Modelswap Replay
+  thesis_statement: >
+    Swapping the model behind a router should require replaying recorded
+    production requests against the candidate and writing a dated revert
+    rule before the swap goes live, not after someone notices it's worse.
+  created_at: 2026-06-30
   current_verdict: unscored
 
-- slug: portfolio-repo-20
-  name: Placeholder Repo 20
-  thesis_statement: "TBD - calibration week 2026-W25"
-  created_at: 2026-01-01
+- slug: release-pillar-mapper
+  name: Release Pillar Mapper
+  thesis_statement: >
+    A frontier-model release gets absorbed as mood within a day unless
+    it's turned into typed, ranked rows against the build portfolio, the
+    brief corpus, and the investing thesis pillars it actually touches.
+  created_at: 2026-06-25
   current_verdict: unscored
