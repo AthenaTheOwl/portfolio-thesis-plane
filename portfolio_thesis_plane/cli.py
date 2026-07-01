@@ -17,6 +17,8 @@ import sys
 from pathlib import Path
 from typing import Sequence
 
+import yaml
+
 from . import ledger, loader
 from .report import render_card, render_rollup
 from .score import FACTOR_NAMES, build_rollup, score_repo
@@ -89,7 +91,11 @@ def _cmd_score(args: argparse.Namespace) -> int:
         print(f"score: unknown repo {args.repo!r}", file=sys.stderr)
         return 1
 
-    signals = loader.load_signals(args.week)
+    try:
+        signals = loader.load_signals(args.week)
+    except (FileNotFoundError, ValueError, yaml.YAMLError) as exc:
+        print(f"score: {exc}", file=sys.stderr)
+        return 1
     sub_scores, _ = _extract_scores_and_evidence(signals.get(args.repo))
     result = score_repo(args.repo, args.week, sub_scores)
     print(json.dumps(result, indent=2, sort_keys=True))
@@ -98,7 +104,11 @@ def _cmd_score(args: argparse.Namespace) -> int:
 
 def _cmd_generate(args: argparse.Namespace) -> int:
     registry = loader.load_registry()
-    signals = loader.load_signals(args.week)
+    try:
+        signals = loader.load_signals(args.week)
+    except (FileNotFoundError, ValueError, yaml.YAMLError) as exc:
+        print(f"generate: {exc}", file=sys.stderr)
+        return 1
 
     out_dir = Path(args.out) if args.out else loader.REPO_ROOT / "reports" / args.week
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -152,7 +162,7 @@ def _cmd_show(args: argparse.Namespace) -> int:
         week = args.week or loader.latest_week()
         registry = loader.load_registry()
         signals = loader.load_signals(week)
-    except FileNotFoundError as exc:
+    except (FileNotFoundError, ValueError, yaml.YAMLError) as exc:
         print(f"show: {exc}", file=sys.stderr)
         return 1
 
