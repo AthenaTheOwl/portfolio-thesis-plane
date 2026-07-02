@@ -74,23 +74,6 @@ athena-site:
     decision-freshness:
       - "Latest DEC is ~80 days old; thinking is dated."
 
-# Placeholder repos: every factor scores 0 because no signals have been
-# curated for them yet. They will be replaced with real entries as the
-# canonical portfolio list is confirmed.
-portfolio-repo-04: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-05: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-06: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-07: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-08: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-09: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-10: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-11: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-12: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-13: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-14: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-15: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-16: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-17: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-18: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-19: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
-portfolio-repo-20: {scores: {model-release-impact: 0, oss-competition: 0, paper-drift: 0, recent-run-evidence: 0, decision-freshness: 0}}
+# The seventeen newly registered repos (2026-W25 consolidation) have no
+# curated signals yet. Per the header note above, repos absent from this
+# file score 0 on every factor -- an honest zero, not a fabricated score.
