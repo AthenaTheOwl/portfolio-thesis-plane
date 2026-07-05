@@ -27,23 +27,24 @@ These roles exist in the spec ledger; not all are implemented in v0.
 
 ## Voice constraints
 
-- No marketing words. The banned set will live in
-  `scripts/voice_lint.py::BANNED_FAIL` once the gate lands.
+- No marketing words. The banned set lives in
+  `scripts/voice_lint.py::BANNED_FAIL`.
 - No antithetical reversals as a structural device.
 - The rubric scores use numbers, not adjectives.
 - The verdict is a single word: `ATTEND`, `FREEZE`, or `RETIRE`. No
   modifiers, no hedges.
 
-## Gates (will land in spec 0002)
+## Gates
 
-Planned local gates before pushing:
+Local gates before pushing:
 
 - `pytest`
-- `voice_lint.py` on `reports/*.md`
-- `spec_check.py` against `specs/`
-- `validate_registry.py` — every repo in `registry/repos.yaml` has a
+- `python scripts/voice_lint.py`
+- `python scripts/validate_schemas.py`
+- `python scripts/validate_registry.py` — every repo in `registry/repos.yaml` has a
   thesis statement and a current verdict
-- `validate_rubric.py` — every rubric factor has a scoring rule
+- `python scripts/validate_rubric.py` — every rubric factor has a scoring rule
+- `python scripts/validate_decisions.py`
 
 ## Out of scope
 
