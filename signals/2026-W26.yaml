@@ -1,0 +1,346 @@
+# signals/2026-W26.yaml
+#
+# Hand-curated signals for the second weekly cadence run. Repos absent
+# from this file score 0 on every factor for the week.
+
+portfolio-thesis-plane:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 4
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 9 commits in w/c 2026-06-22, including the v0.1 merge and proof workflow."
+    decision-freshness:
+      - "decisions/: DEC-PTP-001-rubric-closure.md dated 2026-06-22."
+
+binding-constraint:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 3
+    decision-freshness: 0
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 5 commits in w/c 2026-06-22, including app interaction and CI work."
+    decision-freshness:
+      - "decisions/: no DEC files found."
+
+athena-site:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 3
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 9 commits in w/c 2026-06-22, including factory v0.1 work and proof workflow."
+    decision-freshness:
+      - "decisions/: DEC-CDCP-023-sensitive-disclosure-discipline.md dated 2026-05-31."
+
+supplier-risk-rag-agent:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 3
+    decision-freshness: 3
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 6 commits in w/c 2026-06-22, including app entrypoint and CI work."
+    decision-freshness:
+      - "decisions/: latest W26-or-earlier DEC is DEC-EVL-008-eval-replay-command.md dated 2026-05-28."
+
+mcp-security-lab:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 3
+    decision-freshness: 3
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 6 commits in w/c 2026-06-22, including app interaction and CI work."
+    decision-freshness:
+      - "decisions/: DEC-MCPSEC-009-systems-thinking-discipline-adoption.md dated 2026-05-29."
+
+trace-to-eval-harness:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 3
+    decision-freshness: 3
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 5 commits in w/c 2026-06-22, including app interaction and CI work."
+    decision-freshness:
+      - "decisions/: DEC-TTE-012-systems-thinking-discipline-adoption.md dated 2026-05-29."
+
+eval-forge:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 4
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 5 commits in w/c 2026-06-22, including eval-forge v0.1 and CI work."
+    decision-freshness:
+      - "decisions/: DEC-EF-002-vendor-harness-checks.md dated 2026-06-22."
+
+review-queue:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 4
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 10 commits in w/c 2026-06-22, including factory v0.1 work and proof workflow."
+    decision-freshness:
+      - "decisions/: DEC-RQ-001-human-gate-default.md dated 2026-06-22."
+
+agent-notary-layer:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 3
+    decision-freshness: 0
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 5 commits in w/c 2026-06-22, including app interaction and CI work."
+    decision-freshness:
+      - "decisions/: no DEC files found."
+
+pattern-index:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 4
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 7 commits in w/c 2026-06-22, including factory v0.1 work and proof workflow."
+    decision-freshness:
+      - "decisions/: DEC-PIX-001-taxonomy-curation-policy.md dated 2026-06-21."
+
+dream-replay-cli:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 4
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 10 commits in w/c 2026-06-22, including factory v0.1 work and proof workflow."
+    decision-freshness:
+      - "decisions/: DEC-001-promotion-gate-rules.md dated 2026-06-22."
+
+sports-prediction-os:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 3
+    decision-freshness: 0
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 4 commits in w/c 2026-06-22, including app interaction and CI work."
+    decision-freshness:
+      - "decisions/: no DEC files found."
+
+oulipo-memory-deck:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 0
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 7 commits in w/c 2026-06-22, including factory v0.1 work and proof workflow."
+    decision-freshness:
+      - "decisions/: no DEC files found."
+
+pre-mortem-ledger:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 4
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 8 commits in w/c 2026-06-22, including factory v0.1 work and proof workflow."
+    decision-freshness:
+      - "decisions/: DEC-0001-v0.1-cut.md dated 2026-06-22."
+
+source-decay-ledger:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 3
+    decision-freshness: 4
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 5 commits in w/c 2026-06-22, including app interaction and CI work."
+    decision-freshness:
+      - "decisions/: DEC-SDL-001-yield-thresholds.md dated 2026-06-20."
+
+brief-calibration:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 3
+    decision-freshness: 4
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 6 commits in w/c 2026-06-22, including app interaction and CI work."
+    decision-freshness:
+      - "decisions/: DEC-CAL-001-rubric-v0.md dated 2026-06-21."
+
+modelswap-replay:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 0
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 6 commits in w/c 2026-06-22, including app interaction and proof workflow."
+    decision-freshness:
+      - "decisions/: no DEC files found."
+
+release-pillar-mapper:
+  scores:
+    model-release-impact: 0
+    oss-competition: 0
+    paper-drift: 0
+    recent-run-evidence: 4
+    decision-freshness: 0
+  evidence:
+    model-release-impact:
+      - "No verified offline source for model releases in W26."
+    oss-competition:
+      - "No verified offline source for OSS competitor movement in W26."
+    paper-drift:
+      - "No verified offline source for papers in W26."
+    recent-run-evidence:
+      - "git log: 9 commits in w/c 2026-06-22, including factory v0.1 work and proof workflow."
+    decision-freshness:
+      - "decisions/: no DEC files found."
