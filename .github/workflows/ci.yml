@@ -56,3 +56,5 @@ jobs:
 
       - name: validate-decisions
         run: python -m uv run python scripts/validate_decisions.py
+      - name: validate_data_conformance
+        run: python -m uv run python scripts/validate_data_conformance.py
