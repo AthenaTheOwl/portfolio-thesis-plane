@@ -106,10 +106,10 @@ reports/2026-W26/         the week's cards + _rollup.md
 schemas/  specs/  decisions/  docs/  tests/
 ```
 
-## License
-
-MIT. See [LICENSE](LICENSE).
-
 ## Method update
 
 [October method update: A forced attention ranking still needs a coverage label](docs/attention-under-missing-evidence.md).
+
+## License
+
+MIT. See [LICENSE](LICENSE).
